@@ -54,16 +54,16 @@ export const inspectText = input => {
     }
   });
 
-  if (!name) {
+  if (!change) {
+    return { status: 'failed', reason: 'change' };
+  } else if (!name) {
     return { status: 'failed', reason: 'name' };
-  } else if (!name) {
-    return { status: 'failed', reason: 'action' };
-  } else if (!name) {
+  } else if (!amount) {
     return { status: 'failed', reason: 'amount' };
   } else {
     return { status: 'passed', name, change, amount };
   }
 };
 
-console.log(inspectText('jeff owes me $200'));
-console.log(inspectText('jeff paid me $200'));
+// console.log(inspectText('jeff owes me $200'));
+// console.log(inspectText('jeff paid me $200'));

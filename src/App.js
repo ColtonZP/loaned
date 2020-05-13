@@ -9,8 +9,13 @@ function App() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    rewriteHistory([...history, inspectText(input)]);
-    changeInput('');
+    const inspectedText = inspectText(input);
+    if (inspectedText.status === 'failed') {
+      alert('a(n) ' + inspectedText.reason + ' appears to be missing.');
+    } else {
+      rewriteHistory([...history, input]);
+      changeInput('');
+    }
   }
 
   return (
