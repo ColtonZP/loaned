@@ -6,7 +6,40 @@ form {
 }
 
 .people {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media screen and (min-width: 1300px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  grid-gap: 1em;
+  width: 80%;
+  margin: 0 auto;
   & .person {
+    width: 12em;
+    height: 12em;
+    background-color: lightgray;
+    border-radius: 50%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    & .name {
+      color: white;
+      display: block;
+      text-align: center;
+      font-size: 1.6em;
+      font-weight: bold;
+    }
+    & .amount {
+      color: green;
+      display: block;
+      text-align: center;
+      font-size: 1em;
+    }
     & .history {
       display: none;
       & .inc {
