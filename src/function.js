@@ -1,6 +1,6 @@
 const incKeywords = ['owes', 'took', 'borrowed'];
 const decKeywords = ['paid', 'gave'];
-const filterKeywords = ['me'];
+const filterKeywords = ['me', 'another'];
 
 export const inspectText = input => {
   let name, change, amount;
@@ -8,8 +8,17 @@ export const inspectText = input => {
   function filter(inputText) {
     let filteredReturn;
     filterKeywords.forEach(word => {
-      filteredReturn = inputText.replace(` ${word} `, ' ');
+      if (filteredReturn !== undefined) {
+        filteredReturn = filteredReturn.replace(` ${word} `, ' ');
+      } else filteredReturn = inputText.replace(` ${word} `, ' ');
     });
+    // Shave extra spaces in front or back
+    if (filteredReturn[0] === ' ') {
+      filteredReturn = filteredReturn.substring(1, filteredReturn.length);
+    }
+    if (filteredReturn[filteredReturn.length - 1] === ' ') {
+      filteredReturn = filteredReturn.substring(0, filteredReturn.length - 1);
+    }
     return filteredReturn;
   }
 
@@ -55,7 +64,7 @@ export const inspectText = input => {
   });
 
   if (!change) {
-    return { status: 'failed', reason: 'change' };
+    return { status: 'failed', reason: 'action' };
   } else if (!name) {
     return { status: 'failed', reason: 'name' };
   } else if (!amount) {
@@ -65,5 +74,10 @@ export const inspectText = input => {
   }
 };
 
+// just for testing :)
 // console.log(inspectText('jeff owes me $200'));
 // console.log(inspectText('jeff paid me $200'));
+
+const arrOfObj = {
+  jeff: { owed: 200, history: 'things' },
+};
