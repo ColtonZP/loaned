@@ -1,0 +1,20 @@
+form {
+  & input[type='text'] {
+  }
+  & input[type='text'] {
+  }
+}
+
+.people {
+  & .person {
+    & .history {
+      display: none;
+      & .inc {
+        color: red;
+      }
+      & .dec {
+        color: green;
+      }
+    }
+  }
+}
