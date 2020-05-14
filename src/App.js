@@ -33,7 +33,6 @@ const App = inject('OwedStore')(
             value={input}
             onChange={e => changeInput(e.target.value)}
           />
-          <input type="submit" value="submit" />
         </form>
         <div className="people">
           {OwedStore.records.map(person => (
