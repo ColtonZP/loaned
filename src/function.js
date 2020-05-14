@@ -1,5 +1,5 @@
-const incKeywords = ['owes', 'took', 'borrowed'];
-const decKeywords = ['paid', 'gave'];
+const incKeywords = ['owes', 'took', 'borrowed', 'incurred', 'needs'];
+const decKeywords = ['paid', 'gave', 'provided'];
 const filterKeywords = ['me', 'another'];
 
 export const inspectText = input => {
