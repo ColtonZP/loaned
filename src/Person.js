@@ -6,7 +6,7 @@ const Person = inject('OwedStore')(
     return (
       <div className="person">
         <span className="name">{props.person.name}</span>
-        <span className="name">${props.person.amount}</span>
+        <span className="amount">${props.person.amount}</span>
         <div className="history">
           {props.person.history.map(record =>
             record.change === 'increment' ? (
