@@ -6,7 +6,7 @@ form {
     font-size: 2em;
     border-radius: 5px;
     border: 1px lightgray solid;
-    padding: .2em;
+    padding: 0.2em;
     width: 80%;
     &:focus {
       outline: none;
@@ -15,6 +15,8 @@ form {
   }
   input[type='submit'] {
     -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
     font-size: 2em;
   }
 }
