@@ -1,10 +1,15 @@
-import React from 'react';
+import React, { createContext } from 'react';
+
+export const Books = createContext([]);
 
 function App() {
   return (
-    <div className="App">
-      <h1>Owed</h1>
-    </div>
+    <Books.Provider value={[]}>
+      <div className="App">
+        <h1>Owed</h1>
+        <button onClick={() => console.log('add clicked')}>Add</button>
+      </div>
+    </Books.Provider>
   );
 }
 
