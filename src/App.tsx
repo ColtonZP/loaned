@@ -1,15 +1,14 @@
-import React, { createContext } from 'react';
-
-export const Books = createContext([]);
+import React from 'react';
+import { ContextComponent } from './hooks/Context';
 
 function App() {
   return (
-    <Books.Provider value={[]}>
+    <ContextComponent>
       <div className="App">
         <h1>Owed</h1>
-        <button onClick={() => console.log('add clicked')}>Add</button>
+        <button onClick={() => ContextComponent.addRecord()}>Add</button>
       </div>
-    </Books.Provider>
+    </ContextComponent>
   );
 }
 

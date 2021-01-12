@@ -23,7 +23,8 @@ yarn-debug.log*
 yarn-error.log*
 
 yarn.lock
-.tsconfig.json
+tsconfig.json
 .eslintrc.js
 .eslintcache
 .prettierrc.js
+react-app-env.d.ts
