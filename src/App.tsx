@@ -8,7 +8,6 @@ function App() {
   return (
     <ContextComponent>
       <div className="App">
-        <h1>Owed</h1>
         <Form />
         <People />
       </div>

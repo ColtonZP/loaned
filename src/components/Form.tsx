@@ -9,8 +9,9 @@ export const Form = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    inspectText(value);
-    updateValue('');
+    const submittedText = inspectText(value);
+    console.log(submittedText);
+    // updateValue('');
   };
 
   return (
