@@ -13,7 +13,6 @@ export const Form = () => {
     if (submittedText.status === 'failed') {
       alert('a(n) ' + submittedText.reason + ' appears to be missing.');
     } else if (submittedText.name && submittedText.amount) {
-      console.log(submittedText);
       records.find(record => record.name === submittedText.name)
         ? updatePerson(
             submittedText.name,
