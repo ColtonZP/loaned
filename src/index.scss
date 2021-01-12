@@ -25,7 +25,6 @@ ul {
   border: 1px solid black;
 
   &:focus {
-    border: none;
-    outline: 2px solid green;
+    border-color: green;
   }
 }
