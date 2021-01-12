@@ -4,7 +4,7 @@ import { GlobalContext } from '../hooks/Context';
 import { inspectText } from '../inspectText';
 
 export const Form = () => {
-  const { records, addPerson } = useContext(GlobalContext);
+  const { records, addPerson, updatePerson } = useContext(GlobalContext);
   const [value, updateValue] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -15,15 +15,18 @@ export const Form = () => {
     } else if (submittedText.name && submittedText.amount) {
       console.log(submittedText);
       records.find(record => record.name === submittedText.name)
-        ? console.log(`name found`)
+        ? updatePerson(
+            submittedText.name,
+            submittedText.amount,
+            submittedText.change,
+          )
         : addPerson(
             submittedText.name,
             submittedText.amount,
             submittedText.change,
           );
-      // addRecord(submittedText);
     }
-    // updateValue('');
+    updateValue('');
   };
 
   return (
