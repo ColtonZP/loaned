@@ -12,7 +12,7 @@ export const Person = ({ value }: Props) => {
 
   return (
     <li>
-      <span>{`${name} owes ${amount}`}</span>
+      <span>{`${name} ${amount}`}</span>
     </li>
   );
 };

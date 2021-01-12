@@ -3,16 +3,17 @@ import React, { useState, createContext } from 'react';
 type Record = {
   name: string;
   amount: number;
+  history?: [{ amount: number; change: string }];
 };
 
 type State = {
   records: Record[];
-  addRecord: (name: string, amount: number) => void;
+  addPerson: (name: string, amount: number, change: string) => void;
 };
 
 const initialState: State = {
   records: [],
-  addRecord: () => {},
+  addPerson: () => {},
 };
 
 export const GlobalContext = createContext<State>(initialState);
@@ -24,10 +25,11 @@ export const ContextComponent: React.FC = ({ children }) => {
     <GlobalContext.Provider
       value={{
         records: records,
-        addRecord: (name, amount) => {
-          const person = { name: name, amount: amount };
-          const newRecords = [...records, person];
-          updateRecords(newRecords);
+
+        addPerson: (name, amount, change) => {
+          const person = { name, amount: change === 'inc' ? amount : -amount };
+          const newRecord = [...records, person];
+          updateRecords(newRecord);
         },
       }}
     >
