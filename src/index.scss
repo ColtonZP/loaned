@@ -6,6 +6,7 @@
   vertical-align: baseline;
   line-height: 1;
   font-size: 10px;
+  // outline: none;
 }
 
 body {
@@ -18,4 +19,12 @@ body {
 
 ul {
   list-style: none;
+}
+
+.text-input {
+  border: 1px solid black;
+  &:focus {
+    border: none;
+    outline: 2px solid green;
+  }
 }
