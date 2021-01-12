@@ -6,7 +6,7 @@
   vertical-align: baseline;
   line-height: 1;
   font-size: 10px;
-  outline: none;
+  // outline: none;
 }
 
 body {
@@ -25,6 +25,6 @@ ul {
   border: 1px solid black;
 
   &:focus {
-    border-color: green;
+    outline: 1px solid green;
   }
 }
