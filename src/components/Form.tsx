@@ -10,7 +10,9 @@ export const Form = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const submittedText = inspectText(value);
-    console.log(submittedText);
+    if (submittedText.status === 'failed') {
+      alert('a(n) ' + submittedText.reason + ' appears to be missing.');
+    }
     // updateValue('');
   };
 
