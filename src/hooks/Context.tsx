@@ -7,7 +7,7 @@ type Record = {
 
 type State = {
   records: Record[];
-  addRecord: () => void;
+  addRecord: (name: string, amount: number) => void;
 };
 
 const initialState: State = {
@@ -24,8 +24,8 @@ export const ContextComponent: React.FC = ({ children }) => {
     <GlobalContext.Provider
       value={{
         records: records,
-        addRecord: () => {
-          const person = { name: 'person', amount: 0 };
+        addRecord: (name, amount) => {
+          const person = { name: name, amount: amount };
           const newRecords = [...records, person];
           updateRecords(newRecords);
         },

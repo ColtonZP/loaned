@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { GlobalContext } from '../hooks/Context';
 
 export const Form = () => {
+  const { addRecord } = useContext(GlobalContext);
   const [value, updateValue] = useState<string>('');
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(value);
+    addRecord(value, 100);
+    updateValue('');
   };
 
   return (
