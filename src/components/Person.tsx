@@ -8,9 +8,11 @@ type Props = {
 };
 
 export const Person = ({ value }: Props) => {
+  const { name, amount } = value;
+
   return (
     <li>
-      <span>{`${value.name} owes ${value.amount}`}</span>
+      <span>{`${name} owes ${amount}`}</span>
     </li>
   );
 };

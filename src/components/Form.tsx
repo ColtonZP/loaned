@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 
 import { GlobalContext } from '../hooks/Context';
+import { inspectText } from '../inspectText';
 
 export const Form = () => {
   const { addRecord } = useContext(GlobalContext);
@@ -8,7 +9,7 @@ export const Form = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addRecord(value, 100);
+    inspectText(value);
     updateValue('');
   };
 
