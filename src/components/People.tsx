@@ -1,13 +1,14 @@
 import React, { useContext } from 'react';
 
-import { GlobalContext } from '../hooks/Context';
+import { useStore } from '../store';
 import { Person } from './Person';
 
 export const People = () => {
-  const { records } = useContext(GlobalContext);
+  const records: any = useStore(state => state.records);
+
   return (
     <ul>
-      {records.map(person => (
+      {records.map((person: { amount: any; name: string }) => (
         <Person key={person.name} value={person} />
       ))}
     </ul>

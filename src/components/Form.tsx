@@ -1,10 +1,13 @@
 import React, { useState, useContext } from 'react';
 
-import { GlobalContext } from '../hooks/Context';
+import { useStore } from '../store';
 import { inspectText } from '../inspectText';
 
 export const Form = () => {
-  const { records, addPerson, updatePerson } = useContext(GlobalContext);
+  const records: any = useStore(state => state.records);
+  const addPerson: any = useStore(state => state.addPerson);
+  const updatePerson: any = useStore(state => state.updatePerson);
+
   const [value, updateValue] = useState<string>('');
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -13,7 +16,9 @@ export const Form = () => {
     if (submittedText.status === 'failed') {
       alert('a(n) ' + submittedText.reason + ' appears to be missing.');
     } else if (submittedText.name && submittedText.amount) {
-      records.find(record => record.name === submittedText.name)
+      records.find(
+        (record: { name: string }) => record.name === submittedText.name,
+      )
         ? updatePerson(
             submittedText.name,
             submittedText.amount,
