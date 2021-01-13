@@ -35,7 +35,7 @@ export const useStore = create<Store>(set => ({
             ...record,
             amount:
               change === 'inc'
-                ? Number(record.amount * 100) + Number(amount * 100)
+                ? (Number(record.amount * 100) + Number(amount * 100)) / 100
                 : (Number(record.amount * 100) - Number(amount * 100)) / 100,
             history: [...record.history, { amount, change }],
           };
@@ -44,16 +44,5 @@ export const useStore = create<Store>(set => ({
         return record;
       }),
     }));
-    // const person = state.records.find(record => record.name === name);
-    // if (person) {
-    //   person.history = [...person.history, { amount, change }];
-    //   const currentAmount = person.amount * 100;
-    //   const changeAmount = amount * 100;
-    //   const newAmount =
-    //     change === 'inc'
-    //       ? (currentAmount + changeAmount) / 100
-    //       : (currentAmount - changeAmount) / 100;
-    //   person.amount = newAmount;
-    // }
   },
 }));
