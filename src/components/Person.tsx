@@ -21,11 +21,15 @@ export const Person = ({ value }: Props) => {
       <span className="Name">{name}</span>
       <span className="Amount">{amount.toFixed(2)}</span>
       <ul>
-        {history.map((record: History) => (
-          <li className={record.change} key={record.amount}>
-            {record.amount}
-          </li>
-        ))}
+        {history.map((record: History) => {
+          const { amount, change } = record;
+
+          return (
+            <li className={change} key={amount}>
+              {`${change === 'inc' ? `+` : `-`}${amount}`}
+            </li>
+          );
+        })}
       </ul>
     </li>
   );
