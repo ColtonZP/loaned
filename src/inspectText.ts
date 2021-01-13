@@ -4,11 +4,15 @@ const decKeywords = ['paid', 'gave', 'provided', 'loaned'];
 export const inspectText = (input: string) => {
   let change, verb;
   const nameReg = /^\S+/;
-  const amountReg = /[0-9]+/;
+  const amountReg = /(?:[0-9][,]*)+(?:[.][0-9]{1,2})?/;
 
   const trimmedInput: string = input.trim();
   let name: string = (trimmedInput.match(nameReg) || [])[0];
-  const amount: number = Number((trimmedInput.match(amountReg) || [])[0]);
+  const amount: number = Number(
+    (trimmedInput.match(amountReg) || [])[0].replace(/[,]/g, ''),
+  );
+
+  console.log(amount);
 
   incKeywords.forEach(word => {
     const isInc = input.includes(word);
