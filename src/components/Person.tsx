@@ -22,7 +22,7 @@ export const Person = ({ value }: Props) => {
       <span className="amount">
         {amount % 1 !== 0 ? amount.toFixed(2) : amount}
       </span>
-      <ul>
+      <ul className="records">
         {history.map((record: History) => {
           const { amount, change } = record;
 
