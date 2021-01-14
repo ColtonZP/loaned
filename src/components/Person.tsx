@@ -19,14 +19,16 @@ export const Person = ({ value }: Props) => {
   return (
     <li className="person">
       <span className="name">{name}</span>
-      <span className="amount">{amount.toFixed(2)}</span>
+      <span className="amount">
+        {amount % 1 !== 0 ? amount.toFixed(2) : amount}
+      </span>
       <ul>
         {history.map((record: History) => {
           const { amount, change } = record;
 
           return (
             <li className={change} key={amount}>
-              {`${change === 'inc' ? `+` : `-`}${amount}`}
+              {`${change === 'inc' ? `+` : `-`}${amount.toFixed(2)}`}
             </li>
           );
         })}
