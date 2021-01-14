@@ -17,9 +17,9 @@ export const Person = ({ value }: Props) => {
   const { name, amount, history } = value;
 
   return (
-    <li>
-      <span className="Name">{name}</span>
-      <span className="Amount">{amount.toFixed(2)}</span>
+    <li className="person">
+      <span className="name">{name}</span>
+      <span className="amount">{amount.toFixed(2)}</span>
       <ul>
         {history.map((record: History) => {
           const { amount, change } = record;

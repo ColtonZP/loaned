@@ -15,10 +15,10 @@ type History = {
 };
 
 export const People = () => {
-  const records: any = useStore(state => state.records);
+  const records: any = useStore((state) => state.records);
 
   return (
-    <ul>
+    <ul className="people">
       {records.map((person: Record) => (
         <Person key={person.name} value={person} />
       ))}
