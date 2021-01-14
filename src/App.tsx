@@ -6,7 +6,10 @@ import { People } from './components/People';
 function App() {
   return (
     <div className="App">
-      <Form />
+      <header>
+        <h1>Owed</h1>
+        <Form />
+      </header>
       <People />
     </div>
   );
