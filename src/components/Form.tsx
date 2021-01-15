@@ -1,12 +1,12 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 
 import { useStore } from '../store';
 import { inspectText } from '../inspectText';
 
 export const Form = () => {
-  const records: any = useStore(state => state.records);
-  const addPerson: any = useStore(state => state.addPerson);
-  const updatePerson: any = useStore(state => state.updatePerson);
+  const records: any = useStore((state) => state.records);
+  const addPerson: any = useStore((state) => state.addPerson);
+  const updatePerson: any = useStore((state) => state.updatePerson);
 
   const [value, updateValue] = useState<string>('');
 
@@ -17,17 +17,17 @@ export const Form = () => {
       alert('a(n) ' + submittedText.reason + ' appears to be missing.');
     } else if (submittedText.name && submittedText.amount) {
       records.find(
-        (record: { name: string }) => record.name === submittedText.name,
+        (record: { name: string }) => record.name === submittedText.name
       )
         ? updatePerson(
             submittedText.name,
             submittedText.amount,
-            submittedText.change,
+            submittedText.change
           )
         : addPerson(
             submittedText.name,
             submittedText.amount,
-            submittedText.change,
+            submittedText.change
           );
     }
     updateValue('');
@@ -39,7 +39,7 @@ export const Form = () => {
         className="text-input"
         type="text"
         value={value}
-        onChange={e => updateValue(e.target.value)}
+        onChange={(e) => updateValue(e.target.value)}
       />
     </form>
   );
