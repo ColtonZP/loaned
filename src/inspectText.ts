@@ -1,4 +1,4 @@
-const incKeywords = ['owes', 'took', 'borrowed', 'incurred', 'needs'];
+const incKeywords = ['owes', 'took', 'borrowed', 'incurred', 'needs', 'needed'];
 const decKeywords = ['paid', 'gave', 'provided', 'loaned'];
 
 export const inspectText = (input: string) => {
@@ -9,10 +9,10 @@ export const inspectText = (input: string) => {
   const trimmedInput: string = input.trim();
   let name: string = (trimmedInput.match(nameReg) || [])[0];
   const amount: number = Number(
-    (trimmedInput.match(amountReg) || [])[0].replace(/[,]/g, ''),
+    (trimmedInput.match(amountReg) || [])[0].replace(/[,]/g, '')
   );
 
-  incKeywords.forEach(word => {
+  incKeywords.forEach((word) => {
     const isInc = input.includes(word);
     if (isInc) {
       change = 'inc';
@@ -21,7 +21,7 @@ export const inspectText = (input: string) => {
   });
 
   if (!change) {
-    decKeywords.forEach(word => {
+    decKeywords.forEach((word) => {
       const isDec = input.includes(word);
       if (isDec) {
         change = 'dec';
