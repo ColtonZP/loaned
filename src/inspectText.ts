@@ -1,4 +1,12 @@
-const incKeywords = ['owes', 'took', 'borrowed', 'incurred', 'needs', 'needed'];
+const incKeywords = [
+  'owes',
+  'took',
+  'borrowed',
+  'incurred',
+  'needs',
+  'needed',
+  'loaned',
+];
 const decKeywords = ['paid', 'gave', 'provided', 'loaned'];
 
 export const inspectText = (input: string) => {
