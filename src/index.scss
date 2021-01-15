@@ -36,22 +36,62 @@ ul {
 }
 
 form {
-  width: 100%;
-  text-align: center;
-  padding: 3em 0;
-  background: linear-gradient(rgba(255, 255, 255, 0) 7.4rem, white);
-}
-
-.text-input {
-  border: 2px solid lightgray;
   width: 60%;
   min-width: 25rem;
-  font-size: 3em;
-  border-radius: 1em;
-  padding: 0.1em 0.5em;
+  margin: 0 auto;
+  padding-top: 3em;
+  position: relative;
 
-  &:focus {
-    border: 2px solid #3358ff;
+  .text-input {
+    border: 2px solid gray;
+    width: 100%;
+    font-size: 3em;
+    border-radius: 1em;
+    padding: 0.1em 0.5em;
+
+    &:focus {
+      border: 2px solid #3358ff;
+
+      & + .placeholder {
+        display: none;
+      }
+    }
+  }
+
+  & .placeholder {
+    width: 100%;
+    height: 100%;
+    font-size: 3em;
+
+    &:after {
+      line-height: 1.3em;
+      pointer-events: none;
+      display: block;
+      width: 100%;
+      content: 'Jeff owes me 20';
+      position: absolute;
+      top: 1em;
+      left: 0;
+      padding: 0.1em 0.5em;
+      font-style: italic;
+      color: gray;
+      animation: animText 20s linear infinite;
+      box-sizing: border-box;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+
+  &::after {
+    position: absolute;
+    top: 100%;
+    left: -40%;
+    width: 105vw;
+    height: 3rem;
+    background: linear-gradient(white 1rem, rgba(0, 0, 0, 0));
+    content: '';
+    z-index: 2;
   }
 }
 
@@ -62,7 +102,7 @@ form {
   align-content: flex-start;
   flex-grow: 1;
   overflow: scroll;
-  // padding: 4em;
+  padding-top: 3em;
   width: 80%;
   min-width: 25rem;
   margin: 0 auto;
@@ -130,5 +170,26 @@ form {
       color: green;
       background-color: rgba(0, 255, 0, 0.2);
     }
+  }
+}
+
+@keyframes animText {
+  0% {
+    content: 'Jeff owes 20';
+  }
+  20% {
+    content: 'Sarah borrowed $50';
+  }
+  40% {
+    content: 'Adri gave me 10';
+  }
+  60% {
+    content: 'Matthew paid me $4.50';
+  }
+  80% {
+    content: 'Derrick needed 40';
+  }
+  100% {
+    content: 'Craig gave back $10';
   }
 }

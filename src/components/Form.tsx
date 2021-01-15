@@ -41,6 +41,7 @@ export const Form = () => {
         value={value}
         onChange={(e) => updateValue(e.target.value)}
       />
+      <div className="placeholder"></div>
     </form>
   );
 };
