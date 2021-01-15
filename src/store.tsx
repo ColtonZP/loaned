@@ -13,7 +13,7 @@ type Store = {
   updatePerson: (name: string, amount: number, change: string) => void;
 };
 
-export const useStore = create<Store>(set => ({
+export const useStore = create<Store>((set) => ({
   records: [],
 
   addPerson: (name, amount, change) => {
@@ -24,12 +24,12 @@ export const useStore = create<Store>(set => ({
       history: [{ amount, change }],
     };
 
-    set(state => ({ records: [...state.records, person] }));
+    set((state) => ({ records: [...state.records, person] }));
   },
 
   updatePerson: (name, amount, change) => {
-    set(state => ({
-      records: state.records.map(record => {
+    set((state) => ({
+      records: state.records.map((record) => {
         if (record.name === name) {
           return {
             ...record,
