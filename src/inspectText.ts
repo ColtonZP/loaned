@@ -6,7 +6,7 @@ const amountReg = /(?:[0-9],*)+(?:\.[0-9]{1,2})?|\.[0-9]{1,2}/;
 export const inspectText = (input: string) => {
   let name, amount, change;
 
-  let trimmedInput: string = input.replace(filterWords, '').trim();
+  let trimmedInput: string = input.replace(filterWords, ' ').trim();
 
   // pull keyword
   change = (() => {
@@ -22,6 +22,8 @@ export const inspectText = (input: string) => {
       }
     }
   })();
+
+  console.log(trimmedInput);
 
   //pull amount
   amount = Number((trimmedInput.match(amountReg) || [])[0].replace(/[,]/g, ''));
