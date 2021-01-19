@@ -27,8 +27,11 @@ export const Person = ({ value }: Props) => {
           const { amount, change } = record;
 
           return (
-            <li className={change} key={amount}>
-              {`${change === 'inc' ? `+` : `-`}${amount.toFixed(2)}`}
+            <li key={amount}>
+              <span className={change}>{`${
+                change === 'inc' ? `+` : `-`
+              }${amount.toFixed(2)}`}</span>
+              <button>&#x2715;</button>
             </li>
           );
         })}
