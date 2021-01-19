@@ -12,7 +12,7 @@ export type Record = {
   history: History[];
 };
 
-export type updatePerson = (
+export type UpdatePerson = (
   name: string,
   amount: number,
   change: string,
@@ -20,10 +20,12 @@ export type updatePerson = (
   id?: number,
 ) => void;
 
+export type AddPerson = (name: string, amount: number, change: string) => void;
+
 export type Store = {
   records: Record[];
-  addPerson: (name: string, amount: number, change: string) => void;
-  updatePerson: updatePerson;
+  addPerson: AddPerson;
+  updatePerson: UpdatePerson;
 };
 
 export const useStore = create<Store>(set => ({

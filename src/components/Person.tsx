@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useStore, History, updatePerson } from '../store';
+import { useStore, History, UpdatePerson } from '../store';
 
 type Props = {
   value: {
@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const Person = ({ value }: Props) => {
-  const updatePerson: updatePerson = useStore(state => state.updatePerson);
+  const updatePerson: UpdatePerson = useStore(state => state.updatePerson);
   const { name, amount, history } = value;
 
   return (
