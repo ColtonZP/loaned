@@ -25,7 +25,7 @@ export const Person = ({ value }: Props) => {
           const { amount, change, id } = record;
 
           return (
-            <li className="record" key={amount}>
+            <li className="record" key={id}>
               <span className={change}>{`${
                 change === 'inc' ? `+` : `-`
               }${amount.toFixed(2)}`}</span>
