@@ -23,8 +23,6 @@ export const inspectText = (input: string) => {
     }
   })();
 
-  console.log(trimmedInput);
-
   //pull amount
   amount = Number((trimmedInput.match(amountReg) || [])[0].replace(/[,]/g, ''));
   trimmedInput = trimmedInput.replace(amountReg, '').trim();
@@ -39,7 +37,7 @@ export const inspectText = (input: string) => {
     trimmedInput = trimmedInput.replace(/[iI]/, '');
   }
 
-  name = trimmedInput;
+  name = trimmedInput.toLowerCase();
 
   if (!change) {
     return { status: 'failed', reason: 'verb (ex. owes, paid, took, gave)' };
