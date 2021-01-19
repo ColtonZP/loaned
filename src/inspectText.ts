@@ -1,38 +1,43 @@
-const incKeywords = ['owes', 'took', 'borrowed', 'incurred', 'needs', 'needed'];
-const decKeywords = ['paid', 'gave', 'provided', 'loaned'];
+const incKeywords = / owe | owes | owed | took | borrowed | incurred | need | needs | needed /;
+const decKeywords = / paid | gave | provided | loaned | lent /;
+const filterWords = / me | from | another | with/;
+const amountReg = /(?:[0-9],*)+(?:\.[0-9]{1,2})?|\.[0-9]{1,2}/;
 
 export const inspectText = (input: string) => {
-  let change, verb;
-  const nameReg = /^\S+/;
-  const amountReg = /(?:[0-9],*)+(?:\.[0-9]{1,2})?|\.[0-9]{1,2}/;
+  let name, amount, change;
 
-  const trimmedInput: string = input.trim();
-  let name: string = (trimmedInput.match(nameReg) || [])[0];
-  const amount: number = Number(
-    (trimmedInput.match(amountReg) || [])[0].replace(/[,]/g, ''),
-  );
+  let trimmedInput: string = input.replace(filterWords, '').trim();
 
-  incKeywords.forEach(word => {
-    const isInc = input.includes(word);
-    if (isInc) {
-      change = 'inc';
-      verb = word;
-    }
-  });
-
-  if (!change) {
-    decKeywords.forEach(word => {
-      const isDec = input.includes(word);
-      if (isDec) {
-        change = 'dec';
-        verb = word;
+  // pull keyword
+  change = (() => {
+    let keyword = trimmedInput.match(incKeywords);
+    if (keyword) {
+      trimmedInput = trimmedInput.replace(incKeywords, '');
+      return 'inc';
+    } else {
+      keyword = trimmedInput.match(decKeywords);
+      if (keyword) {
+        trimmedInput = trimmedInput.replace(decKeywords, '');
+        return 'dec';
       }
-    });
+    }
+  })();
+
+  //pull amount
+  amount = Number((trimmedInput.match(amountReg) || [])[0].replace(/[,]/g, ''));
+  trimmedInput = trimmedInput.replace(amountReg, '').trim();
+
+  //pull name
+  if (trimmedInput[0].match(/[iI]/)) {
+    if (change === 'inc') {
+      change = 'dec';
+    } else if (change === 'dec') {
+      change = 'inc';
+    }
+    trimmedInput = trimmedInput.replace(/[iI]/, '');
   }
 
-  if (name === verb) {
-    name = '';
-  }
+  name = trimmedInput;
 
   if (!change) {
     return { status: 'failed', reason: 'verb (ex. owes, paid, took, gave)' };
