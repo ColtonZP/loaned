@@ -1,22 +1,29 @@
 import create from 'zustand';
 
-type Store = {
-  records: {
-    name: string;
-    amount: number;
-    history: {
-      amount: number;
-      change: string;
-      id: number;
-    }[];
-  }[];
+export type History = {
+  amount: number;
+  change: string;
+  id: number;
+};
+
+export type Record = {
+  name: string;
+  amount: number;
+  history: History[];
+};
+
+export type updatePerson = (
+  name: string,
+  amount: number,
+  change: string,
+  deleteValue?: boolean,
+  id?: number,
+) => void;
+
+export type Store = {
+  records: Record[];
   addPerson: (name: string, amount: number, change: string) => void;
-  updatePerson: (
-    name: string,
-    amount: number,
-    change: string,
-    deleteValue?: boolean,
-  ) => void;
+  updatePerson: updatePerson;
 };
 
 export const useStore = create<Store>(set => ({
@@ -33,7 +40,7 @@ export const useStore = create<Store>(set => ({
     set(state => ({ records: [...state.records, person] }));
   },
 
-  updatePerson: (name, amount, change, deleteValue) => {
+  updatePerson: (name, amount, change, deleteValue, id) => {
     set(state => ({
       records: state.records.map(record => {
         if (deleteValue) {
