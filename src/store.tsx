@@ -7,10 +7,16 @@ type Store = {
     history: {
       amount: number;
       change: string;
+      id: number;
     }[];
   }[];
   addPerson: (name: string, amount: number, change: string) => void;
-  updatePerson: (name: string, amount: number, change: string) => void;
+  updatePerson: (
+    name: string,
+    amount: number,
+    change: string,
+    deleteValue?: boolean,
+  ) => void;
 };
 
 export const useStore = create<Store>(set => ({
@@ -21,23 +27,25 @@ export const useStore = create<Store>(set => ({
     const person = {
       name,
       amount: submitAmount,
-      history: [{ amount, change }],
+      history: [{ amount, change, id: Date.now() }],
     };
 
     set(state => ({ records: [...state.records, person] }));
   },
 
-  updatePerson: (name, amount, change) => {
+  updatePerson: (name, amount, change, deleteValue) => {
     set(state => ({
       records: state.records.map(record => {
-        if (record.name === name) {
+        if (deleteValue) {
+          console.log(`deleted value, changing amount by ${amount}`);
+        } else if (record.name === name) {
           return {
             ...record,
+            history: [...record.history, { amount, change, id: Date.now() }],
             amount:
               change === 'inc'
                 ? (Number(record.amount * 100) + Number(amount * 100)) / 100
                 : (Number(record.amount * 100) - Number(amount * 100)) / 100,
-            history: [...record.history, { amount, change }],
           };
         }
 
