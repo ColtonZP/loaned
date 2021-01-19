@@ -120,16 +120,11 @@ form {
   position: relative;
   text-align: center;
   margin: 0 auto;
-  // padding: 5rem;
-  // overflow: hidden;
 
   &:hover {
     & .records {
       display: flex;
     }
-    // & .removePerson {
-    //   display: block;
-    // }
   }
 
   & .name {

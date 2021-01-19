@@ -1,6 +1,6 @@
 const incKeywords = / owe | owes | owed | took | borrowed | incurred | need | needs | needed /;
 const decKeywords = / paid | gave | provided | loaned | lent /;
-const filterWords = / me | from | another | with/;
+const filterWords = / me | from | another | with | back /;
 const amountReg = /(?:[0-9],*)+(?:\.[0-9]{1,2})?|\.[0-9]{1,2}/;
 
 export const inspectText = (input: string) => {

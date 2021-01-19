@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 
-import { useStore, History, UpdatePerson, RemovePerson } from '../store';
+import { useStore, History } from '../store';
 
 type Props = {
   value: {
@@ -21,10 +21,7 @@ export const Person = ({ value }: Props) => {
     if (amount === 0) {
       removePerson(name);
     }
-    // return () => {
-    //   cleanup
-    // }
-  }, [amount]);
+  }, [amount, name, removePerson]);
 
   return (
     <li className="person">
