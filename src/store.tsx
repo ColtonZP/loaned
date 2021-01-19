@@ -36,7 +36,7 @@ export const useStore = create<Store>(set => ({
     const person = {
       name,
       amount: submitAmount,
-      history: [{ amount, change, id: Date.now() }],
+      history: [{ amount, change, id: 1 }],
     };
 
     set(state => ({ records: [...state.records, person] }));
@@ -55,15 +55,23 @@ export const useStore = create<Store>(set => ({
                   ? (Number(record.amount * 100) - Number(amount * 100)) / 100
                   : (Number(record.amount * 100) + Number(amount * 100)) / 100,
             };
-          } else
+          } else {
             return {
               ...record,
-              history: [{ amount, change, id: Date.now() }, ...record.history],
+              history: [
+                {
+                  amount,
+                  change,
+                  id: record.history[0].id + 1,
+                },
+                ...record.history,
+              ],
               amount:
                 change === 'inc'
                   ? (Number(record.amount * 100) + Number(amount * 100)) / 100
                   : (Number(record.amount * 100) - Number(amount * 100)) / 100,
             };
+          }
         }
 
         return record;
