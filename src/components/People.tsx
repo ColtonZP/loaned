@@ -1,21 +1,10 @@
 import React from 'react';
 
-import { useStore } from '../store';
+import { useStore, Record } from '../store';
 import { Person } from './Person';
 
-type Record = {
-  name: string;
-  amount: number;
-  history: History[];
-};
-
-type History = {
-  amount: number;
-  change: string;
-};
-
 export const People = () => {
-  const records: any = useStore(state => state.records);
+  const records: Record[] = useStore(state => state.records);
 
   return (
     <ul className="people">

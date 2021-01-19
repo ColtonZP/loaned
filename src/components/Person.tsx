@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { useStore, History, updatePerson } from '../store';
+
 type Props = {
   value: {
     name: string;
@@ -8,12 +10,8 @@ type Props = {
   };
 };
 
-type History = {
-  amount: number;
-  change: string;
-};
-
 export const Person = ({ value }: Props) => {
+  const updatePerson: updatePerson = useStore(state => state.updatePerson);
   const { name, amount, history } = value;
 
   return (
@@ -24,14 +22,18 @@ export const Person = ({ value }: Props) => {
       </span>
       <ul className="records">
         {history.map((record: History) => {
-          const { amount, change } = record;
+          const { amount, change, id } = record;
 
           return (
             <li key={amount}>
               <span className={change}>{`${
                 change === 'inc' ? `+` : `-`
               }${amount.toFixed(2)}`}</span>
-              <button>&#x2715;</button>
+              <button
+                onClick={() => updatePerson(name, amount, change, true, id)}
+              >
+                &#x2715;
+              </button>
             </li>
           );
         })}
