@@ -58,7 +58,7 @@ export const useStore = create<Store>(set => ({
           } else
             return {
               ...record,
-              history: [...record.history, { amount, change, id: Date.now() }],
+              history: [{ amount, change, id: Date.now() }, ...record.history],
               amount:
                 change === 'inc'
                   ? (Number(record.amount * 100) + Number(amount * 100)) / 100
