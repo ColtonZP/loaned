@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { useStore, History, UpdatePerson } from '../store';
+import { useStore, History, UpdatePerson, RemovePerson } from '../store';
 
 type Props = {
   value: {
@@ -11,7 +11,10 @@ type Props = {
 };
 
 export const Person = ({ value }: Props) => {
-  const updatePerson: UpdatePerson = useStore(state => state.updatePerson);
+  const { updatePerson, removePerson } = useStore(state => ({
+    updatePerson: state.updatePerson,
+    removePerson: state.removePerson,
+  }));
   const { name, amount, history } = value;
 
   return (
@@ -21,6 +24,9 @@ export const Person = ({ value }: Props) => {
         {amount % 1 !== 0 ? amount.toFixed(2) : amount}
       </span>
       <ul className="records">
+        <button className="removePerson" onClick={() => removePerson(name)}>
+          Remove person
+        </button>
         {history.map((record: History) => {
           const { amount, change, id } = record;
 

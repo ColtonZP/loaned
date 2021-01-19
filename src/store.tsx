@@ -22,10 +22,13 @@ export type UpdatePerson = (
 
 export type AddPerson = (name: string, amount: number, change: string) => void;
 
+export type RemovePerson = (name: string) => void;
+
 export type Store = {
   records: Record[];
   addPerson: AddPerson;
   updatePerson: UpdatePerson;
+  removePerson: RemovePerson;
 };
 
 export const useStore = create<Store>(set => ({
@@ -40,6 +43,12 @@ export const useStore = create<Store>(set => ({
     };
 
     set(state => ({ records: [...state.records, person] }));
+  },
+
+  removePerson: (name: string) => {
+    set(state => ({
+      records: state.records.filter(person => person.name !== name),
+    }));
   },
 
   updatePerson: (name, amount, change, deleteValue, id) => {

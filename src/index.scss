@@ -127,6 +127,9 @@ form {
     & .records {
       display: flex;
     }
+    // & .removePerson {
+    //   display: block;
+    // }
   }
 
   & .name {
@@ -151,7 +154,7 @@ form {
     text-align: center;
     overflow: scroll;
     background: rgba(255, 255, 255, 0.6);
-    padding: 1em 0;
+    padding: 2em 0;
 
     & .record {
       margin: 0.5rem 0;
