@@ -45,17 +45,25 @@ export const useStore = create<Store>(set => ({
   updatePerson: (name, amount, change, deleteValue, id) => {
     set(state => ({
       records: state.records.map(record => {
-        if (deleteValue) {
-          console.log(`deleted value, changing amount by ${amount}`);
-        } else if (record.name === name) {
-          return {
-            ...record,
-            history: [...record.history, { amount, change, id: Date.now() }],
-            amount:
-              change === 'inc'
-                ? (Number(record.amount * 100) + Number(amount * 100)) / 100
-                : (Number(record.amount * 100) - Number(amount * 100)) / 100,
-          };
+        if (record.name === name) {
+          if (deleteValue) {
+            return {
+              ...record,
+              history: record.history.filter(record => record.id !== id),
+              amount:
+                change === 'inc'
+                  ? (Number(record.amount * 100) - Number(amount * 100)) / 100
+                  : (Number(record.amount * 100) + Number(amount * 100)) / 100,
+            };
+          } else
+            return {
+              ...record,
+              history: [...record.history, { amount, change, id: Date.now() }],
+              amount:
+                change === 'inc'
+                  ? (Number(record.amount * 100) + Number(amount * 100)) / 100
+                  : (Number(record.amount * 100) - Number(amount * 100)) / 100,
+            };
         }
 
         return record;
