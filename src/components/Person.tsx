@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { useStore, History, UpdatePerson, RemovePerson } from '../store';
 
@@ -16,6 +16,15 @@ export const Person = ({ value }: Props) => {
     removePerson: state.removePerson,
   }));
   const { name, amount, history } = value;
+
+  useEffect(() => {
+    if (amount === 0) {
+      removePerson(name);
+    }
+    // return () => {
+    //   cleanup
+    // }
+  }, [amount]);
 
   return (
     <li className="person">
