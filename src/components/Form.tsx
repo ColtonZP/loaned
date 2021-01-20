@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 
-import { useStore, Record, AddPerson, UpdatePerson } from '../store';
+import { useStore } from '../store';
 import { inspectText } from '../inspectText';
 
 export const Form = () => {
-  const records: Record[] = useStore(state => state.records);
-  const addPerson: AddPerson = useStore(state => state.addPerson);
-  const updatePerson: UpdatePerson = useStore(state => state.updatePerson);
+  const { records, addPerson, updatePerson } = useStore(state => ({
+    records: state.records,
+    addPerson: state.addPerson,
+    updatePerson: state.updatePerson,
+  }));
 
   const [value, updateValue] = useState<string>('');
 
