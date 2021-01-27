@@ -82,17 +82,6 @@ form {
       text-overflow: ellipsis;
     }
   }
-
-  &::after {
-    position: absolute;
-    top: 100%;
-    left: -40%;
-    width: 105vw;
-    height: 3rem;
-    background: linear-gradient(white 1rem, rgba(0, 0, 0, 0));
-    content: '';
-    z-index: 2;
-  }
 }
 
 .people {
