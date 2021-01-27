@@ -1,7 +1,7 @@
 {
   "name": "owed",
   "version": "2.2.1",
-  "homepage": "https://coltonzp.github.io/owed/",
+  "homepage": "https://coltonzp.github.io/loaned/",
   "private": true,
   "dependencies": {
     "@types/node": "^14.14.20",
